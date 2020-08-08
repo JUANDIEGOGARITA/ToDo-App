@@ -20,9 +20,6 @@
                     android:id="@+id/menu_priority_high"
                     android:title="@string/priority_high" />
                 <item
-                    android:id="@+id/menu_priority_medium"
-                    android:title="@string/priority_medium" />
-                <item
                     android:id="@+id/menu_priority_low"
                     android:title="@string/priority_low" />
 
@@ -30,7 +27,7 @@
         </item>
     </group>
 
-    <item android:id="menu_delete_all"
+    <item android:id="@+id/menu_delete_all"
         android:title="@string/delete_all"
         app:showAsAction="never"/>
 </menu>
