@@ -21,6 +21,7 @@ abstract class ToDoDatabase : RoomDatabase() {
                 return tempInstance
             }
 
+            // blocks this call to be accessed by only one thread at the time.
             synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
