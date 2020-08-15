@@ -14,9 +14,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
 
     val listener: AdapterView.OnItemSelectedListener = object :
         AdapterView.OnItemSelectedListener {
-        override fun onNothingSelected(parent: AdapterView<*>?) {
-            TODO("Not yet implemented")
-        }
+        override fun onNothingSelected(parent: AdapterView<*>?) {}
 
         override fun onItemSelected(
             parent: AdapterView<*>?,
