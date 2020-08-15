@@ -11,12 +11,13 @@ import com.jd.todoapp.R
 import com.jd.todoapp.data.models.Priority
 import com.jd.todoapp.data.models.ToDoData
 import com.jd.todoapp.data.viewmodel.ToDoViewModel
+import com.jd.todoapp.fragments.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_add.*
 
 class AddFragment : Fragment() {
 
     private val mTodoViewModel: ToDoViewModel by viewModels()
-
+    private val mSharedViewModel: SharedViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,12 +43,12 @@ class AddFragment : Fragment() {
         val mPriority = priorities_spinner.selectedItem.toString()
         val mDescription = description_et.text.toString()
 
-        val validation = verifyDataFromUser(mTitle, mDescription)
+        val validation = mSharedViewModel.verifyDataFromUser(mTitle, mDescription)
         if (validation) {
             val newData = ToDoData(
                 0,
                 mTitle,
-                parsePriority(mPriority),
+                mSharedViewModel.parsePriority(mPriority),
                 mDescription
             )
             mTodoViewModel.insertData(newData)
@@ -57,27 +58,6 @@ class AddFragment : Fragment() {
         } else {
             Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_SHORT)
                 .show()
-        }
-    }
-
-    private fun verifyDataFromUser(title: String, description: String): Boolean {
-        return if (TextUtils.isEmpty(title) || TextUtils.isEmpty(description)) {
-            false
-        } else !(title.isEmpty() || description.isEmpty())
-    }
-
-    private fun parsePriority(priority: String): Priority {
-        return when (priority) {
-            "High Priority" -> {
-                Priority.HIGH
-            }
-            "Medium Priority" -> {
-                Priority.MEDIUM
-            }
-            "Low Priority" -> {
-                Priority.LOW
-            }
-            else -> Priority.LOW
         }
     }
 }
