@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="mSharedViewModel"
+            type="com.jd.todoapp.fragments.SharedViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,6 +48,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:contentDescription="@string/no_data"
+            android:emptyDatabase="@{mSharedViewModel.empyDatabase}"
             android:src="@drawable/ic_no_data"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
@@ -59,6 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:alpha="0.5"
+            android:emptyDatabase="@{mSharedViewModel.empyDatabase}"
             android:text="@string/no_data"
             android:textSize="16sp"
             android:visibility="invisible"
