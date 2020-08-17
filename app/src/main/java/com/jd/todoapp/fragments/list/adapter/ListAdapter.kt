@@ -1,4 +1,4 @@
-package com.jd.todoapp.fragments.list
+package com.jd.todoapp.fragments.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -21,13 +21,17 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
             fun from(parent: ViewGroup): MyViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = RowLayoutBinding.inflate(layoutInflater, parent, false)
-                return MyViewHolder(binding)
+                return MyViewHolder(
+                    binding
+                )
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder.from(parent)
+        return MyViewHolder.from(
+            parent
+        )
     }
 
     override fun getItemCount(): Int {
