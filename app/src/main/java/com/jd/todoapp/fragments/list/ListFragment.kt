@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jd.todoapp.R
 import com.jd.todoapp.data.viewmodel.ToDoViewModel
@@ -38,9 +37,6 @@ class ListFragment : Fragment() {
         mSharedViewModel.empyDatabase.observe(viewLifecycleOwner, Observer {
             showEmptyDatabaseViews(it)
         })
-        view.floatingActionButton.setOnClickListener {
-            findNavController().navigate(R.id.action_listFragment_to_addFragment)
-        }
 
         //set menu
         setHasOptionsMenu(true)
