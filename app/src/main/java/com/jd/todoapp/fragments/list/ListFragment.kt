@@ -19,6 +19,7 @@ import com.jd.todoapp.databinding.FragmentListBinding
 import com.jd.todoapp.fragments.SharedViewModel
 import com.jd.todoapp.fragments.list.adapter.ListAdapter
 import com.jd.todoapp.fragments.list.adapter.SwipeToDelete
+import com.jd.todoapp.utils.hideKeyboard
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 
 class ListFragment : Fragment(), SearchView.OnQueryTextListener {
@@ -50,6 +51,10 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
         //set menu
         setHasOptionsMenu(true)
+
+        //Hide keyboard
+        hideKeyboard(requireActivity())
+
         return binding.root
     }
 
@@ -77,18 +82,17 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
                 adapter.notifyItemRemoved(viewHolder.adapterPosition)
 
                 //Restore Deleted Item
-                restoreDeletedData(viewHolder.itemView, deletedItem, viewHolder.adapterPosition)
+                restoreDeletedData(viewHolder.itemView, deletedItem)
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
-    private fun restoreDeletedData(view: View, deletedItem: ToDoData, position: Int) {
+    private fun restoreDeletedData(view: View, deletedItem: ToDoData) {
         val snackbar = Snackbar.make(view, "Deleted '${deletedItem.title}'", Snackbar.LENGTH_LONG)
         snackbar.setAction("Undo") {
             mToDoViewModel.insertData(deletedItem)
-            adapter.notifyItemChanged(position)
         }
         snackbar.show()
     }
