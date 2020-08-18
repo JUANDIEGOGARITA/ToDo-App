@@ -14,7 +14,7 @@ import com.jd.todoapp.data.models.ToDoData
 
 class SharedViewModel(application: Application) : AndroidViewModel(application) {
 
-    val empyDatabase: MutableLiveData<Boolean> = MutableLiveData(true)
+    val empyDatabase: MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun checkIfDatabaseEmpty(toDoData: List<ToDoData>) {
         empyDatabase.value = toDoData.isEmpty()
